@@ -240,8 +240,15 @@ function getRectangleString(width, height) {
  *    => 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm'
  *
  */
-function encodeToRot13(/* str */) {
-  throw new Error('Not implemented');
+function encodeToRot13(str) {
+  const latinABC = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz!?.,';
+  const rotABC = 'NOPQRSTUVWXYZABCDEFGHIJKLM nopqrstuvwxyzabcdefghijklm!?.,';
+  let rotStr = '';
+  for (let i = 0; i < str.length; i += 1) {
+    const index = latinABC.indexOf(str[i]);
+    rotStr += rotABC[index];
+  }
+  return rotStr;
 }
 
 /**
