@@ -189,10 +189,14 @@ function extractEmails(str) {
  *
  * @example
  *
- *            '┌────┐\n'+
- *  (6,4) =>  '│    │\n'+
- *            '│    │\n'+
- *            '└────┘\n'
+ *            ' ┌ ─ ─ ─ ─ ┐\n'+
+ *  (6,4) =>  '│
+ *     │\n'+
+ *            '│
+ *     │\n'+
+ *            '└
+ * ────
+ * ┘\n'
  *
  *  (2,2) =>  '┌┐\n'+
  *            '└┘\n'
@@ -202,8 +206,21 @@ function extractEmails(str) {
  *             '└──────────┘\n'
  *
  */
-function getRectangleString(/* width, height */) {
-  throw new Error('Not implemented');
+function getRectangleString(width, height) {
+  const line = '─';
+  const space = ' ';
+  const topAngleLeft = '┌';
+  const topAngleRight = '┐\n';
+  const bottomAngleLeft = '└';
+  const bottomAngleRight = '┘\n';
+  const lineVerticalLeft = '│';
+  const lineVerticalRight = '│\n';
+  const horizontalMidleLineRect = line.repeat(width - 2);
+  const topLineRect = topAngleLeft + horizontalMidleLineRect + topAngleRight;
+  const middleLineVertical = lineVerticalLeft + space.repeat(width - 2) + lineVerticalRight;
+  const bottomLineRect = bottomAngleLeft + horizontalMidleLineRect + bottomAngleRight;
+  const rect = topLineRect + middleLineVertical.repeat(height - 2) + bottomLineRect;
+  return rect;
 }
 
 
