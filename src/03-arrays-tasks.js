@@ -333,8 +333,15 @@ function get3TopItems(arr) {
  *   [ null, 1, 'elephant' ] => 1
  *   [ 1, '2' ] => 1
  */
-function getPositivesCount(/* arr */) {
-  throw new Error('Not implemented');
+function getPositivesCount(arr) {
+  let result = 0;
+  arr.map((item) => {
+    if (typeof item === 'number' && !Number.isNaN(item) && item > 0) {
+      result += 1;
+    }
+    return item;
+  });
+  return result;
 }
 
 /**
