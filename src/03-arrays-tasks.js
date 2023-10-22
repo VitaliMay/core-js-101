@@ -715,23 +715,37 @@ function getElementByIndexes(arr, indexes) {
  *   [ 1, 2, 3, 4, 5, 6, 7, 8 ]   =>  [ 5, 6, 7, 8, 1, 2, 3, 4 ]
  *
  */
+
 function swapHeadAndTail(arr) {
-  const result = [];
   const len = arr.length;
   if (!len || len === 1) {
     return arr;
   }
   const lenSlice = Math.floor(len / 2);
   if (len / 2 === lenSlice) {
-    result.push(arr.slice(-lenSlice));
-    result.push(arr.slice(0, lenSlice));
-  } else {
-    result.push(arr.slice(-lenSlice));
-    result.push(arr.slice(lenSlice, lenSlice + 1));
-    result.push(arr.slice(0, lenSlice));
+    return [...arr.slice(-lenSlice), ...arr.slice(0, lenSlice)];
   }
-  return result.flat();
+  return [...arr.slice(-lenSlice), ...arr.slice(lenSlice, lenSlice + 1), ...arr.slice(0, lenSlice)];
 }
+
+
+// function swapHeadAndTail(arr) {
+//   const result = [];
+//   const len = arr.length;
+//   if (!len || len === 1) {
+//     return arr;
+//   }
+//   const lenSlice = Math.floor(len / 2);
+//   if (len / 2 === lenSlice) {
+//     result.push(arr.slice(-lenSlice));
+//     result.push(arr.slice(0, lenSlice));
+//   } else {
+//     result.push(arr.slice(-lenSlice));
+//     result.push(arr.slice(lenSlice, lenSlice + 1));
+//     result.push(arr.slice(0, lenSlice));
+//   }
+//   return result.flat();
+// }
 
 
 module.exports = {
