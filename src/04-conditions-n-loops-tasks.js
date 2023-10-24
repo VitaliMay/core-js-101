@@ -288,8 +288,26 @@ function reverseInteger(num) {
  *   5436468789016589 => false
  *   4916123456789012 => false
  */
-function isCreditCardNumber(/* ccn */) {
-  throw new Error('Not implemented');
+
+function isCreditCardNumber(num) {
+  const ccn = num.toString().split('').reverse().join('');
+  const len = ccn.length;
+  let result = 0;
+  let tempDigit;
+
+  for (let i = 0; i < len; i += 1) {
+    tempDigit = Number(ccn[i]);
+
+    if ((i + 1) % 2 === 0 && i !== 0) {
+      tempDigit *= 2;
+      if (tempDigit > 9) {
+        tempDigit -= 9;
+      }
+    }
+    result += tempDigit;
+  }
+
+  return result % 10 === 0;
 }
 
 /**
