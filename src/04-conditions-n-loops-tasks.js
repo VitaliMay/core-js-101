@@ -453,8 +453,27 @@ function getCommonDirectoryPath(pathesArr) {
  *                         [ 6 ]]
  *
  */
-function getMatrixProduct(/* m1, m2 */) {
-  throw new Error('Not implemented');
+
+function getMatrixProduct(m1, m2) {
+  const rowsM1 = m1.length;
+  const rowsM2 = m2.length;
+  const columnM2 = m2[0].length;
+
+  // формирую матрицу-результат
+  const resultMatrix = Array(rowsM1).fill(0).map(() => Array(columnM2).fill(0));
+
+  if (rowsM1 !== columnM2) return resultMatrix; // если входные матрицы невозможно перемножить
+
+  // умножение матриц
+  for (let i = 0; i < rowsM1; i += 1) {
+    for (let k = 0; k < columnM2; k += 1) {
+      for (let j = 0; j < rowsM2; j += 1) {
+        resultMatrix[i][k] += m1[i][j] * m2[j][k];
+      }
+    }
+  }
+
+  return resultMatrix;
 }
 
 
